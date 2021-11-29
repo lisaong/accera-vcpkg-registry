@@ -1,6 +1,9 @@
 # cf. https://github.com/microsoft/vcpkg/blob/master/ports/llvm/portfile.cmake
 set(LLVM_VERSION "13.0.0")
 
+# BUILD_SHARED_LIBS option is not supported on Windows
+vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
+
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO llvm/llvm-project
@@ -23,7 +26,6 @@ vcpkg_configure_cmake(
     OPTIONS
         -DLLVM_APPEND_VC_REV=OFF
         -DLLVM_ENABLE_BINDINGS=OFF
-        -DLLVM_EXTERNAL_CLANG_TOOLS_EXTRA_SOURCE_DIR=""
         -DLLVM_CCACHE_BUILD=OFF
         -DLLVM_ENABLE_OCAMLDOC=OFF
         -DLLVM_ENABLE_TERMINFO=OFF
@@ -41,11 +43,6 @@ vcpkg_configure_cmake(
         -DLLVM_INSTALL_UTILS=ON
         -DLLVM_TARGETS_TO_BUILD=host;X86;ARM;NVPTX;AMDGPU
         -DCMAKE_INSTALL_PREFIX="install"
-        -DMLIR_CUDA_RUNNER_ENABLED=ON
-        # "-DMLIR_ROCM_RUNNER_ENABLED=ON
-        -DMLIR_ROCM_CONVERSIONS_ENABLED=ON
-        -DMLIR_VULKAN_RUNNER_ENABLED=ON
-        -DMLIR_INCLUDE_TESTS=OFF
         # Force TableGen to be built with optimization. This will significantly improve build time.
         -DLLVM_OPTIMIZED_TABLEGEN=ON
         -DPACKAGE_VERSION=${LLVM_VERSION}
