@@ -14,7 +14,7 @@ vcpkg_from_github(
         0001-Merged-PR-2213-mlir-Plumb-OpenMP-dialect-attributes-.patch
         0002-Merged-PR-2237-Improved-codegen-of-vpmaddwd-instruct.patch
         0003-Fix-bad-merge.patch
-        0004-fix-install-paths.patch
+        #0004-fix-install-paths.patch
 )
 
 vcpkg_find_acquire_program(PYTHON3)
@@ -43,7 +43,6 @@ vcpkg_configure_cmake(
         -DLLVM_ENABLE_ZLIB=OFF
         -DLLVM_INSTALL_UTILS=ON
         -DLLVM_TARGETS_TO_BUILD=host;X86;ARM;NVPTX;AMDGPU
-        -DCMAKE_INSTALL_PREFIX="install"
         # Force TableGen to be built with optimization. This will significantly improve build time.
         -DLLVM_OPTIMIZED_TABLEGEN=ON
         -DPACKAGE_VERSION=${LLVM_VERSION}
