@@ -38,17 +38,20 @@ vcpkg_configure_cmake(
         -DLLVM_BUILD_UTILS=ON
         -DLLVM_ENABLE_ASSERTIONS=ON
         -DLLVM_ENABLE_EH=ON
-        -DLLVM_ENABLE_PROJECTS="mlir;lld"
         -DLLVM_ENABLE_RTTI=ON
         -DLLVM_ENABLE_ZLIB=OFF
         -DLLVM_INSTALL_UTILS=ON
-        -DLLVM_TARGETS_TO_BUILD="host;X86;ARM;NVPTX;AMDGPU"
-        # Force TableGen to be built with optimization. This will significantly improve build time.
-        -DLLVM_OPTIMIZED_TABLEGEN=ON
+        "-DLLVM_ENABLE_PROJECTS=mlir;lld"
+        "-DLLVM_TARGETS_TO_BUILD=host;X86;ARM;NVPTX;AMDGPU"
         -DPACKAGE_VERSION=${LLVM_VERSION}
+        # Force TableGen to be built with optimization. This will significantly improve build time.
+        # cf. https://github.com/microsoft/vcpkg/blob/master/ports/llvm
+        -DLLVM_OPTIMIZED_TABLEGEN=ON
         # Limit the maximum number of concurrent link jobs to 1. This should fix low amount of memory issue for link.
+        # cf. https://github.com/microsoft/vcpkg/blob/master/ports/llvm
         -DLLVM_PARALLEL_LINK_JOBS=1
         # Disable build LLVM-C.dll (Windows only) due to doesn't compile with CMAKE_DEBUG_POSTFIX
+        # cf. https://github.com/microsoft/vcpkg/blob/master/ports/llvm
         -DLLVM_BUILD_LLVM_C_DYLIB=OFF
         # Path for binary subdirectory (defaults to 'bin')
         -DLLVM_TOOLS_INSTALL_DIR=tools/llvm
