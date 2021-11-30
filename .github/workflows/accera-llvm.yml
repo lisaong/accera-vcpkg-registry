@@ -1,5 +1,5 @@
 # cf. https://vcpkg.readthedocs.io/en/stable/users/binarycaching/
-name: Builds the Accera LLVM vcpkg
+name: accera-llvm build
 
 env:
   VCPKG_BINARY_SOURCES: 'clear;nuget,GitHub,readwrite'
@@ -7,8 +7,8 @@ env:
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
