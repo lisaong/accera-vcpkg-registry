@@ -1,9 +1,10 @@
-# cf. https://github.com/microsoft/vcpkg/blob/master/ports/llvm/portfile.cmake
+# Builds LLVM for features needed by Accera
 set(LLVM_VERSION "13.0.0")
 
 # BUILD_SHARED_LIBS option is not supported on Windows
 vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
 
+# Note: to get the SHA512 after updating REF, run once after changing REF and the computed SHA512 will be printed in the error spew
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO llvm/llvm-project
@@ -14,7 +15,7 @@ vcpkg_from_github(
         0001-Merged-PR-2213-mlir-Plumb-OpenMP-dialect-attributes-.patch
         0002-Merged-PR-2237-Improved-codegen-of-vpmaddwd-instruct.patch
         0003-Fix-bad-merge.patch
-        0004-fix-install-paths.patch
+        0004-fix-install-paths.patch # cf. https://github.com/microsoft/vcpkg/blob/master/ports/llvm
 )
 
 vcpkg_find_acquire_program(PYTHON3)
