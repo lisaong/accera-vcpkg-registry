@@ -4,10 +4,18 @@ An experimental [vcpkg registry](https://vcpkg.io/en/docs/maintainers/registries
 
 LLVM port is based on: https://github.com/microsoft/vcpkg/blob/master/ports/llvm, but limited to what is needed for Accera.
 
+[![accera-llvm](https://github.com/lisaong/accera-vcpkg-registry/actions/workflows/accera-llvm.yml/badge.svg)](https://github.com/lisaong/accera-vcpkg-registry/actions/workflows/accera-llvm.yml)
+
 ## Build instructions
 
 Windows
 
 ```shell
 vcpkg.exe install accera-llvm:x64-windows --overlay-ports=ports\accera-llvm
+```
+
+Linux / macOS:
+
+```shell
+vcpkg install accera-llvm --overlay-ports=ports/accera-llvm
 ```
