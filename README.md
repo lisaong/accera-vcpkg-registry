@@ -11,3 +11,9 @@ Windows
 ```shell
 vcpkg.exe install accera-llvm:x64-windows --overlay-ports=ports\accera-llvm
 ```
+
+Linux / macOS:
+
+```shell
+vcpkg install accera-llvm --overlay-ports=ports/accera-llvm
+```
