@@ -54,3 +54,8 @@ jobs:
           -name "GitHub"
           -username "lisaong"
           -password "${{ secrets.GITHUB_TOKEN }}"
+      
+      - name: Install accera-llvm
+        shell: 'bash'
+        run: >
+          ./external/vcpkg/vcpkg install accera-llvm --triplet ${{ matrix.triplet }} --overlay-ports=ports/accera-llvm
