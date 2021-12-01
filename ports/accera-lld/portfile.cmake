@@ -12,10 +12,10 @@ vcpkg_from_github(
     SHA512 b80817d31d7123b8c86708d9f73278850908da9b7e177564bf024f1565935c5ddd42003e8519bcce4387995c30ba876f4bc8ed53b713a55181d2215b2b71988b
     HEAD_REF main
     PATCHES
-        0001-Merged-PR-2213-mlir-Plumb-OpenMP-dialect-attributes-.patch
-        0002-Merged-PR-2237-Improved-codegen-of-vpmaddwd-instruct.patch
-        0003-Fix-bad-merge.patch
-        0004-fix-install-paths.patch # cf. https://github.com/microsoft/vcpkg/blob/master/ports/llvm
+        ../accera-llvm/0001-Merged-PR-2213-mlir-Plumb-OpenMP-dialect-attributes-.patch
+        ../accera-llvm/0002-Merged-PR-2237-Improved-codegen-of-vpmaddwd-instruct.patch
+        ../accera-llvm/0003-Fix-bad-merge.patch
+        ../accera-llvm/0004-fix-install-paths.patch # cf. https://github.com/microsoft/vcpkg/blob/master/ports/llvm
 )
 
 vcpkg_find_acquire_program(PYTHON3)
@@ -36,12 +36,13 @@ vcpkg_configure_cmake(
         -DLLVM_INCLUDE_TESTS=OFF
         -DLLVM_INCLUDE_DOCS=OFF
         -DLLVM_BUILD_EXAMPLES=OFF
-        -DLLVM_BUILD_UTILS=ON
+        -DLLVM_BUILD_UTILS=OFF
         -DLLVM_ENABLE_ASSERTIONS=ON
         -DLLVM_ENABLE_EH=ON
         -DLLVM_ENABLE_RTTI=ON
         -DLLVM_ENABLE_ZLIB=OFF
-        -DLLVM_INSTALL_UTILS=ON
+        -DLLVM_INSTALL_UTILS=OFF
+        "-DLLVM_ENABLE_PROJECTS=lld"
         "-DLLVM_TARGETS_TO_BUILD=host;X86;ARM;NVPTX;AMDGPU"
         -DPACKAGE_VERSION=${LLVM_VERSION}
         # Force TableGen to be built with optimization. This will significantly improve build time.
@@ -61,11 +62,11 @@ vcpkg_configure_cmake(
 
 vcpkg_install_cmake()
 
-vcpkg_fixup_cmake_targets(CONFIG_PATH "share/llvm" TARGET_PATH "share/llvm")
-file(INSTALL ${SOURCE_PATH}/llvm/LICENSE.TXT DESTINATION ${CURRENT_PACKAGES_DIR}/share/llvm RENAME copyright)
-file(INSTALL ${CMAKE_CURRENT_LIST_DIR}/llvm_usage DESTINATION ${CURRENT_PACKAGES_DIR}/share/llvm RENAME usage)
+vcpkg_fixup_cmake_targets(CONFIG_PATH "share/lld" TARGET_PATH "share/lld" DO_NOT_DELETE_PARENT_CONFIG_PATH)
+file(INSTALL ${SOURCE_PATH}/lld/LICENSE.TXT DESTINATION ${CURRENT_PACKAGES_DIR}/share/lld RENAME copyright)
+file(INSTALL ${CMAKE_CURRENT_LIST_DIR}/lld_usage DESTINATION ${CURRENT_PACKAGES_DIR}/share/lld RENAME usage)
 
-file(INSTALL ${SOURCE_PATH}/llvm/LICENSE.TXT DESTINATION ${CURRENT_PACKAGES_DIR}/share/accera-llvm RENAME copyright)
+file(INSTALL ${SOURCE_PATH}/llvm/LICENSE.TXT DESTINATION ${CURRENT_PACKAGES_DIR}/share/accera-lld RENAME copyright)
 
 vcpkg_copy_tool_dependencies(${CURRENT_PACKAGES_DIR}/tools/${PORT})
 

@@ -1,4 +1,4 @@
-The package lld provides CMake targets:
+The package mlir provides CMake targets:
 
     find_package(MLIR CONFIG REQUIRED)
     target_include_directories(main PRIVATE ${MLIR_INCLUDE_DIRS})
