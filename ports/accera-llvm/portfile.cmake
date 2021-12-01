@@ -36,12 +36,13 @@ vcpkg_configure_cmake(
         -DLLVM_INCLUDE_TESTS=OFF
         -DLLVM_INCLUDE_DOCS=OFF
         -DLLVM_BUILD_EXAMPLES=OFF
-        -DLLVM_BUILD_UTILS=ON
+        -DLLVM_BUILD_UTILS=OFF
+        -DLLVM_BUILD_TOOLS=OFF
         -DLLVM_ENABLE_ASSERTIONS=ON
         -DLLVM_ENABLE_EH=ON
         -DLLVM_ENABLE_RTTI=ON
         -DLLVM_ENABLE_ZLIB=OFF
-        -DLLVM_INSTALL_UTILS=ON
+        -DLLVM_INSTALL_UTILS=OFF
         "-DLLVM_TARGETS_TO_BUILD=host;X86;ARM;NVPTX;AMDGPU"
         -DPACKAGE_VERSION=${LLVM_VERSION}
         # Force TableGen to be built with optimization. This will significantly improve build time.
