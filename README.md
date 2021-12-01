@@ -19,3 +19,11 @@ Linux / macOS:
 ```shell
 vcpkg install accera-llvm --overlay-ports=ports/accera-llvm
 ```
+
+## Troubleshooting
+
+To reset vcpkg:
+
+1. Delete the vcpkg folder
+2. `git submodule deinit -f .`
+3. `git submodule update --init`
