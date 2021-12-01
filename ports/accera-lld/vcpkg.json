@@ -1,7 +1,0 @@
-{
-    "name": "accera-lld",
-    "version-string": "13.0.0",
-    "description": "LLVM LLD Linker for Accera.",
-    "homepage": "https://llvm.org",
-    "supports": "!uwp"
-  }

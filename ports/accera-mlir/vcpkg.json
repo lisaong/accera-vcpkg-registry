@@ -1,7 +1,0 @@
-{
-    "name": "accera-mlir",
-    "version-string": "13.0.0",
-    "description": "LLVM MLIR Tools for Accera.",
-    "homepage": "https://llvm.org",
-    "supports": "!uwp"
-  }
