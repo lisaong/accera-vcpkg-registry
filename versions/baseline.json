@@ -3,6 +3,14 @@
     "accera-llvm": {
       "baseline": "13.0.0",
       "port-version": 0
+    },
+    "accera-mlir": {
+      "baseline": "13.0.0",
+      "port-version": 0
+    },
+    "accera-lld": {
+      "baseline": "13.0.0",
+      "port-version": 0
     }
   }
 }
