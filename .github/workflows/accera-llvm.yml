@@ -65,11 +65,11 @@ jobs:
       - name: Export accera-llvm
         shell: 'bash'
         run: >
-          ./external/vcpkg/vcpkg export accera-llvm --7zip
+          ./external/vcpkg/vcpkg export accera-llvm --7zip --output=accera-llvm-${{ matrix.triplet }}.7z
 
       - name: Publish to GitHub packages
         shell: 'bash'
-        run: > 
+        run: >
           dotnet nuget push external/vcpkg/*.7z --api-key ${{ secrets.GITHUB_TOKEN }}  --source "GitHub"
 
       - name: Upload build logs
