@@ -1,4 +1,6 @@
-external\vcpkg\bootstrap-vcpkg.bat
+call external\vcpkg\bootstrap-vcpkg.bat
+
+external\vcpkg\vcpkg.exe remove accera-llvm:x64-windows
 
 external\vcpkg\vcpkg.exe install accera-llvm:x64-windows --overlay-ports=ports\accera-llvm
 
