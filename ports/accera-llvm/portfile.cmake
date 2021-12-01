@@ -89,11 +89,8 @@ if(NOT DEFINED VCPKG_BUILD_TYPE OR VCPKG_BUILD_TYPE STREQUAL "debug")
     file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/tools)
 endif()
 
-# Remove unnecessary stuff
+# Post-build validation warnings: LLVM still generates a few DLLs in the static build
 # * libclang.dll
 # * LTO.dll
 # * Remarks.dll
-# * mlir_*.dll
-file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/bin)
-file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/bin)
-file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/share/opt-viewer)
+set(VCPKG_POLICY_DLLS_IN_STATIC_LIBRARY enabled)
