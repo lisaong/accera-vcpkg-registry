@@ -15,6 +15,7 @@ on:
 jobs:
   build:
     strategy:
+      fail-fast: false
       matrix:
         os: ['windows-latest', 'ubuntu-latest', 'macos-latest']
         project: ['accera-llvm', 'accera-mlir', 'accera-lld']
@@ -66,5 +67,5 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: build-logs
+          name: ${{ matrix.project }}-build-logs
           path: external/vcpkg/buildtrees/${{ matrix.project }}/*.log
