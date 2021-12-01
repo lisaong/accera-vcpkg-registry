@@ -70,7 +70,7 @@ jobs:
       - name: Publish to GitHub packages
         shell: 'bash'
         run: >
-          dotnet nuget push external/vcpkg/*.7z --api-key ${{ secrets.GITHUB_TOKEN }}  --source "GitHub"
+          dotnet nuget push external/vcpkg/*.7z --api-key ${{ secrets.GITHUB_TOKEN }}  --source "https://nuget.pkg.github.com/lisaong/index.json"
 
       - name: Upload build logs
         if: always()
