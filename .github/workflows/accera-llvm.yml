@@ -5,16 +5,17 @@ env:
   VCPKG_BINARY_SOURCES: 'clear;nuget,GitHub,readwrite'
 
 on:
-#  push:
-#    branches: [ main ]
-#  pull_request:
-#    branches: [ main ]
+  # push:
+  #   branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
   build:
     strategy:
+      fail-fast: false
       matrix:
         os: ['windows-latest', 'ubuntu-latest', 'macos-latest']
         include:
@@ -61,9 +62,19 @@ jobs:
         run: >
           ./external/vcpkg/vcpkg install accera-llvm --triplet ${{ matrix.triplet }} --overlay-ports=ports/accera-llvm
 
+      - name: Export accera-llvm
+        shell: 'bash'
+        run: >
+          ./external/vcpkg/vcpkg export accera-llvm --nuget --output=accera-llvm-${{ matrix.triplet }}
+
+      - name: Publish to GitHub packages
+        shell: 'bash'
+        run: >
+          dotnet nuget push external/vcpkg/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }}  --source "https://nuget.pkg.github.com/lisaong/index.json" --timeout 512000 --disable-buffering 1
+
       - name: Upload build logs
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: build-logs
+          name: accera-llvm-build-logs
           path: external/vcpkg/buildtrees/accera-llvm/*.log

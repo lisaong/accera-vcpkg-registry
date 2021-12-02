@@ -1,6 +1,9 @@
 # Builds LLVM for features needed by Accera
 set(LLVM_VERSION "13.0.0")
 
+# Only release builds to save space, comment this out if you want both release and debug
+set(VCPKG_BUILD_TYPE release)
+
 # BUILD_SHARED_LIBS option is not supported on Windows
 vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
 
@@ -36,12 +39,13 @@ vcpkg_configure_cmake(
         -DLLVM_INCLUDE_TESTS=OFF
         -DLLVM_INCLUDE_DOCS=OFF
         -DLLVM_BUILD_EXAMPLES=OFF
-        -DLLVM_BUILD_UTILS=ON
+        -DLLVM_BUILD_UTILS=ON # FileCheck
+        -DLLVM_BUILD_TOOLS=OFF
         -DLLVM_ENABLE_ASSERTIONS=ON
         -DLLVM_ENABLE_EH=ON
         -DLLVM_ENABLE_RTTI=ON
         -DLLVM_ENABLE_ZLIB=OFF
-        -DLLVM_INSTALL_UTILS=ON
+        -DLLVM_INSTALL_UTILS=ON # FileCheck
         "-DLLVM_ENABLE_PROJECTS=mlir;lld"
         "-DLLVM_TARGETS_TO_BUILD=host;X86;ARM;NVPTX;AMDGPU"
         -DPACKAGE_VERSION=${LLVM_VERSION}
@@ -59,6 +63,11 @@ vcpkg_configure_cmake(
     OPTIONS_DEBUG
         -DCMAKE_DEBUG_POSTFIX=d
 )
+
+vcpkg_build_cmake(TARGET llc)
+vcpkg_build_cmake(TARGET opt)
+vcpkg_build_cmake(TARGET lld)
+vcpkg_build_cmake(TARGET mlir-translate)
 
 vcpkg_install_cmake()
 
