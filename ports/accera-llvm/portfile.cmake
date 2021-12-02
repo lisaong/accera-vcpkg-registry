@@ -40,7 +40,7 @@ vcpkg_configure_cmake(
         -DLLVM_INCLUDE_DOCS=OFF
         -DLLVM_BUILD_EXAMPLES=OFF
         -DLLVM_BUILD_UTILS=ON # FileCheck
-        -DLLVM_BUILD_TOOLS=OFF
+        -DLLVM_BUILD_TOOLS=ON # opt, llc, mlir-translate
         -DLLVM_ENABLE_ASSERTIONS=ON
         -DLLVM_ENABLE_EH=ON
         -DLLVM_ENABLE_RTTI=ON
@@ -63,11 +63,6 @@ vcpkg_configure_cmake(
     OPTIONS_DEBUG
         -DCMAKE_DEBUG_POSTFIX=d
 )
-
-vcpkg_build_cmake(TARGET llc)
-vcpkg_build_cmake(TARGET opt)
-vcpkg_build_cmake(TARGET lld)
-vcpkg_build_cmake(TARGET mlir-translate)
 
 vcpkg_install_cmake()
 
