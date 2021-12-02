@@ -70,7 +70,7 @@ jobs:
       - name: Publish to GitHub packages
         shell: 'bash'
         run: >
-          dotnet nuget push external/vcpkg/*.nuget --api-key ${{ secrets.GITHUB_TOKEN }}  --source "https://nuget.pkg.github.com/lisaong/index.json"
+          dotnet nuget push external/vcpkg/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }}  --source "https://nuget.pkg.github.com/lisaong/index.json" --timeout 512000 --disable-buffering
 
       - name: Upload build logs
         if: always()
