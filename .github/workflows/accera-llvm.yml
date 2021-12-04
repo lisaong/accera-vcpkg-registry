@@ -65,7 +65,7 @@ jobs:
       - name: Export accera-llvm
         shell: 'bash'
         run: >
-          ./external/vcpkg/vcpkg export accera-llvm --nuget --output=accera-llvm-${{ GITHUB_REF_NAME }}-${{ matrix.triplet }}
+          ./external/vcpkg/vcpkg export accera-llvm --nuget --output=accera-llvm-${{ env.GITHUB_REF_NAME }}-${{ matrix.triplet }}
 
       - name: Publish to GitHub packages
         shell: 'bash'
