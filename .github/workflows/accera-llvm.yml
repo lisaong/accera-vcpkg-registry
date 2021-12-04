@@ -5,8 +5,8 @@ env:
   VCPKG_BINARY_SOURCES: 'clear;nuget,GitHub,readwrite'
 
 on:
-  # push:
-  #   branches: [ main ]
+  push:
+    branches: [ main ]
   # pull_request:
   #   branches: [ main ]
   # Allows you to run this workflow manually from the Actions tab
@@ -65,12 +65,13 @@ jobs:
       - name: Export accera-llvm
         shell: 'bash'
         run: >
-          ./external/vcpkg/vcpkg export accera-llvm --nuget --output=accera-llvm-${{ matrix.triplet }}
+          ./external/vcpkg/vcpkg export accera-llvm --nuget --output=accera-llvm-${{ GITHUB_REF_NAME }}-${{ matrix.triplet }}
 
       - name: Publish to GitHub packages
         shell: 'bash'
         run: >
           dotnet nuget push external/vcpkg/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }}  --source "https://nuget.pkg.github.com/lisaong/index.json" --timeout 512000 --disable-buffering 1
+        continue-on-error: true
 
       - name: Upload build logs
         if: always()
