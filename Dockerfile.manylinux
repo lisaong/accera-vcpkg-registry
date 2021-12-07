@@ -1,5 +1,5 @@
 # cf. https://github.com/microsoft/onnxruntime/blob/master/tools/ci_build/github/linux/docker/Dockerfile.manylinux2014_cpu
-FROM quay.io/pypa/manylinux2014_x86_64:latest
+FROM quay.io/pypa/manylinux_2_24_x86_64:latest
 
 ADD scripts /tmp/scripts
 

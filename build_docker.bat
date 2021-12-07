@@ -1,1 +1,1 @@
-docker build . --file Dockerfile.manylinux --tag lisaong/accera-llvm-manylinux2014:latest
+docker build . --file Dockerfile.manylinux --tag lisaong/accera-llvm-manylinux_2_24:latest
