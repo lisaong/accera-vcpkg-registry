@@ -6,7 +6,7 @@ yum -y install \
     ccache \
     zip
 
-PYTHON_EXES=("/opt/python/cp36-cp36m/bin/python3.6" "/opt/python/cp37-cp37m/bin/python3.7" "/opt/python/cp38-cp38/bin/python3.8" "/opt/python/cp39-cp39/bin/python3.9")
+PYTHON_EXES=("/opt/python/cp37-cp37m/bin/python3.7" "/opt/python/cp38-cp38/bin/python3.8" "/opt/python/cp39-cp39/bin/python3.9")
 
 for PYTHON_EXE in "${PYTHON_EXES[@]}"
 do
