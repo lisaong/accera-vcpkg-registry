@@ -4,7 +4,7 @@ An experimental [vcpkg registry](https://vcpkg.io/en/docs/maintainers/registries
 
 LLVM port is based on: https://github.com/microsoft/vcpkg/blob/master/ports/llvm, but limited to what is needed for Accera.
 
-[![accera-llvm](https://github.com/lisaong/accera-vcpkg-registry/actions/workflows/accera-llvm.yml/badge.svg)](https://github.com/lisaong/accera-vcpkg-registry/actions/workflows/accera-llvm.yml)
+[![accera-llvm manylinux docker build](https://github.com/lisaong/accera-vcpkg-registry/actions/workflows/manylinux-llvm.yml/badge.svg)](https://github.com/lisaong/accera-vcpkg-registry/actions/workflows/manylinux-llvm.yml)
 
 ## Build instructions
 
