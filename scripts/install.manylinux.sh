@@ -12,3 +12,6 @@ for PYTHON_EXE in "${PYTHON_EXES[@]}"
 do
   ${PYTHON_EXE} -m pip install -r requirements.txt
 done
+
+# choose a default
+ln -s /opt/python/cp39-cp39/bin/python3.9 /usr/bin/python3
