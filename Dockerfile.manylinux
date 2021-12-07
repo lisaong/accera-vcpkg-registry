@@ -4,7 +4,7 @@ FROM quay.io/pypa/manylinux2014_x86_64:latest
 ADD scripts /tmp/scripts
 
 WORKDIR /tmp/scripts
-RUN install.manylinux.sh
+RUN /tmp/scripts/install.manylinux.sh
 
 ADD external/vcpkg /opt/vcpkg
 ADD ports /opt/ports
