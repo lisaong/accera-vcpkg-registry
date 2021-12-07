@@ -4,12 +4,12 @@ FROM quay.io/pypa/manylinux2014_x86_64:latest
 ADD scripts /tmp/scripts
 
 WORKDIR /tmp/scripts
-RUN /tmp/scripts/install.manylinux.sh
+RUN sh /tmp/scripts/install.manylinux.sh
 
 ADD external/vcpkg /opt/vcpkg
 ADD ports /opt/ports
 WORKDIR /opt/vcpkg
-RUN /tmp/scripts/install.vcpkg.sh
+RUN sh /tmp/scripts/install.vcpkg.sh
 RUN rm -rf /tmp/scripts
 
 ARG BUILD_UID=1001
