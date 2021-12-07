@@ -1,5 +1,5 @@
 set -e -x
 
-./vcpkg/bootstrap-vcpkg.sh
-./vcpkg/vcpkg install catch2 tomlplusplus --overlay-ports=../accera-llvm
-./vcpkg/vcpkg install accera-llvm --overlay-ports=../accera-llvm
+/opt/vcpkg/bootstrap-vcpkg.sh
+/opt/vcpkg/vcpkg install catch2 tomlplusplus --overlay-ports=/opt/ports/accera-llvm
+/opt/vcpkg/vcpkg install accera-llvm --overlay-ports=/opt/ports/accera-llvm

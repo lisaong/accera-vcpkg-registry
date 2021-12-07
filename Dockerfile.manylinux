@@ -7,7 +7,7 @@ WORKDIR /tmp/scripts
 RUN install.manylinux.sh
 
 ADD external/vcpkg /opt/vcpkg
-ADD ports/accera-llvm /opt/accera-llvm
+ADD ports /opt/ports
 WORKDIR /opt/vcpkg
 RUN /tmp/scripts/install.vcpkg.sh
 RUN rm -rf /tmp/scripts
