@@ -11,9 +11,3 @@ ADD ports /opt/ports
 WORKDIR /opt/vcpkg
 RUN sh /tmp/scripts/install.vcpkg.sh
 RUN rm -rf /tmp/scripts
-
-ARG BUILD_UID=1001
-ARG BUILD_USER=accera
-RUN adduser --uid $BUILD_UID $BUILD_USER
-WORKDIR /home/$BUILD_USER
-USER $BUILD_USER
