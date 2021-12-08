@@ -1,4 +1,4 @@
-name: accera-llvm manylinux docker build
+name: accera-llvm-vulkan manylinux docker build
 
 on:
   # push:
@@ -28,6 +28,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .
-        file: Dockerfile.manylinux
+        file: Dockerfile.manylinux.vulkan
         push: true
-        tags: lisaong/accera-llvm-manylinux2014:latest
+        tags: lisaong/accera-llvm-vulkan-manylinux2014:latest
+
