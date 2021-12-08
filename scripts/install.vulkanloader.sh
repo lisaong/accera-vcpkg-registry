@@ -1,5 +1,7 @@
 set -e -x
 
+SRC_PATH=`pwd`
+
 SDK_VERSION=`curl -L https://vulkan.lunarg.com/sdk/latest/mac.txt`
 INSTALL_PATH=/opt/vulkansdk
 mkdir ${INSTALL_PATH}
@@ -17,3 +19,6 @@ cmake -C helper.cmake -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_TESTS=OFF \
     -DBUILD_WSI_XLIB_SUPPORT=OFF ..
 cmake --build . --config Release --target install
+
+cp -rf ${SRC_PATH}/Vulkan-Loader/build/Vulkan-Headers/build/install/include $(INSTALL_PATH)
+export VULKAN_SDK=${INSTALL_PATH}
