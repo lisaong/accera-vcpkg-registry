@@ -1,0 +1,8 @@
+# cf. https://github.com/microsoft/onnxruntime/blob/master/tools/ci_build/github/linux/docker/Dockerfile.manylinux2014_cpu
+FROM lisaong/accera-llvm-manylinux2014:latest
+
+ADD scripts /home/accera/tmp
+
+WORKDIR /home/accera/tmp
+RUN sh /home/accera/tmp/install.vulkanloader.sh
+RUN rm -rf /home/accera/tmp
