@@ -20,5 +20,5 @@ cmake -C helper.cmake -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_WSI_XLIB_SUPPORT=OFF ..
 cmake --build . --config Release --target install
 
-cp -rf ${SRC_PATH}/Vulkan-Loader/build/Vulkan-Headers/build/install/include $(INSTALL_PATH)
+cp -rf ${SRC_PATH}/Vulkan-Loader/build/Vulkan-Headers/build/install/include ${INSTALL_PATH}
 export VULKAN_SDK=${INSTALL_PATH}
