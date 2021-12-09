@@ -1,12 +1,8 @@
 # cf. https://github.com/microsoft/onnxruntime/blob/master/tools/ci_build/github/linux/docker/Dockerfile.manylinux2014_cpu
 FROM lisaong/accera-llvm-manylinux2014:latest
 
-USER root
 ADD scripts /tmp/scripts
 
 WORKDIR /tmp/scripts
 RUN sh /tmp/scripts/install.vulkanloader.sh
 RUN rm -rf /tmp/scripts
-
-ARG BUILD_USER=accera
-USER $BUILD_USER
