@@ -1,8 +1,6 @@
 FROM quay.io/pypa/manylinux2014_x86_64:latest
 
-ADD .azure/manylinux/scripts /tmp/scripts
-ADD requirements.txt /tmp/scripts/requirements.txt
-
+ADD scripts /tmp/scripts
 WORKDIR /tmp/scripts
 RUN sh /tmp/scripts/install.manylinux.sh
 RUN sh /tmp/scripts/install.vulkanloader.sh
