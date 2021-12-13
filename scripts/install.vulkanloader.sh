@@ -1,8 +1,8 @@
-set -e -x
+set -x -e
 
 SRC_PATH=`pwd`
 
-SDK_VERSION=`curl -L https://vulkan.lunarg.com/sdk/latest/mac.txt`
+SDK_VERSION=`curl -L https://vulkan.lunarg.com/sdk/latest/linux.txt`
 INSTALL_PATH=/opt/vulkansdk
 mkdir ${INSTALL_PATH}
 
