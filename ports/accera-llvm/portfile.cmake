@@ -1,5 +1,5 @@
 # Builds LLVM for features needed by Accera
-set(LLVM_VERSION "13.0.0")
+set(LLVM_VERSION llvmorg-13.0.0)
 
 set(VCPKG_BUILD_TYPE release)
 if((DEFINED ENV{LLVM_BUILD_TYPE}) AND ("$ENV{LLVM_BUILD_TYPE}" STREQUAL "debug"))
@@ -15,11 +15,12 @@ endif()
 vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
 
 # Note: to get the SHA512 after updating REF, run once after changing REF and the computed SHA512 will be printed in the error spew
+# Whenever LLVM_VERSION changes, SHA512 will have to be manually updated to match
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO llvm/llvm-project
-    REF bf9f21a28be171dc500cc68b4cb1fcd3fc33f22
-    SHA512 b80817d31d7123b8c86708d9f73278850908da9b7e177564bf024f1565935c5ddd42003e8519bcce4387995c30ba876f4bc8ed53b713a55181d2215b2b71988b
+    REF ${LLVM_VERSION}
+    SHA512 8004c05d32b9720fb3391783621690c1df9bd1e97e72cbff9192ed88a84b0acd303b61432145fa917b5b5e548c8cee29b24ef8547dcc8677adf4816e7a8a0eb2
     HEAD_REF main
     PATCHES
         0001-Merged-PR-2213-mlir-Plumb-OpenMP-dialect-attributes-.patch
